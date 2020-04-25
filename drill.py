@@ -30,17 +30,19 @@ os.path.getmtime('C:\\py_drill')
   
 modification_time = os.path.getmtime('C:\\py_drill') 
 print("Last modification time since the epoch:", modification_time) 
-  
+
 
 local_time = time.ctime(modification_time) 
-print("Last modification time(Local time):", local_time) 
+print("Last modification time(Local time):", local_time)
+
 
 
 #______
 
 
 import fnmatch
-for file in os.listdir('C:\\py_drill'):
+for file in os.listdir(fPath):
     if fnmatch.fnmatch(file, '*.txt'):
-        fTime = os.path.getmtime('C:\\py_drill')
-        print (file,fTime)
+       abPath = os.path.join(fPath,file)
+       fTime = os.path.getmtime(abPath)
+       print (file,fTime)
