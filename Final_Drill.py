@@ -56,10 +56,10 @@ class ParentWindow(Frame):
         
 
 
+
+        
     
     def moveFiles(self):
-        """Allows user to move files from one directory to another. Iterates through
-        files prints files ending in .txt, shows time of last modification and inserts into DB."""
         source=self.txtFName.get()
         dest=self.txtLName.get()
         sourcefiles=os.listdir(source)
@@ -75,22 +75,29 @@ class ParentWindow(Frame):
                     conn.commit()
     
                     
+                
+        
+
 
     def picSrc_dir(self):
-        # Allow user to select a source directory
+        # Allow user to select a directory and store it in global var
+        # called folder_path
         filename = filedialog.askdirectory()
         self.txtFName.delete(0,END)
         self.txtFName.insert(0,filename)
-
         
 
     def dest_dir(self):
-        # Allow user to select a destination directory
+        # Allow user to select a directory and store it in global var
+        # called folder_path
         filename = filedialog.askdirectory()
         self.txtLName.delete(0,END)
         self.txtLName.insert(0,filename)
 
 
+    
+        
+        
 
     def cancel(self):
         self.master.destroy()
@@ -104,6 +111,33 @@ if __name__ == "__main__":
      
 
     
+
+#_____________________________________________________________-
+
+"""import sqlite3
+
+conn = sqlite3.connect('drill_1.db')
+
+with conn:
+    cur = conn.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS tbl_fList\
+        (ID INTEGER PRIMARY KEY AUTOINCREMENT, \
+        col_fileN TEXT \
+        )")
+    conn.commit()
+
+
+
+fileList = ('information.docx','Hello.txt','myImage.png', \
+            'myMovie.mpg','World.txt','data.pdf','myPhoto.jpg')
+with conn:
+    for file in fileList:
+        if file.endswith('.txt'):
+            cur = conn.cursor()
+            cur.execute("INSERT INTO tbl_fList(col_fileN) VALUES (?)", \
+                (file,))
+            print (file)"""
+
 
 
 
